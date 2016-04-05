@@ -78,7 +78,7 @@ def read_file(filename):
         header = True
         for row in csv_reader:
             if header:
-                #Skip header row
+                # Skip header row
                 header = False
                 continue
             xed_files.append(row[2])
@@ -114,8 +114,9 @@ def run_main():
     args = parser.parse_args(sys.argv[1:])
     xed_files = get_xed_files(args.run, args.data_set, args.info_directory)
     if not os.path.isfile('user_cert'):
-        sys.stderr.write("No user proxy found, please generate one using "
-                         "voms-proxy-init\n")
+        sys.stderr.write("No user proxy found, please generate one using \n" +
+                         "voms-proxy-init  -voms xenon.biggrid.nl " +
+                         "-valid 168:00 -out user_cert \n")
         sys.exit(1)
     if len(xed_files) == 0:
         sys.stdout.write("No files to process, exiting")
@@ -143,7 +144,10 @@ def run_main():
         buffer = buffer.replace('OUTPUT_FILES', ",".join(output_files))
         buffer = buffer.replace('XED_INPUT', ",".join(input_file_paths))
         output.write(buffer)
-
+    if not os.path.exists('results'):
+        os.mkdir('results')
+    if not os.path.exists('log'):
+        os.mkdir('log')
     return 0
 
 if __name__ == '__main__':
