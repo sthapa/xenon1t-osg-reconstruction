@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
-import glob
-import csv
-import sys
-import os
-import math
-import time
 import argparse
+import csv
+import glob
+import math
+import os
+import sys
+import time
 
 path_translations = {'/project/lgrandi/xenon100/archive/data/': '/stash/project/@xenon1t/xenon100/archive/data/'}
 

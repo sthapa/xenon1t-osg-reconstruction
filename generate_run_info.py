@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
 import argparse
+import csv
 import glob
 import os
 import sys
-import csv
 
 
 def run_main():
